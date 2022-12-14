@@ -8,6 +8,9 @@ public class ID {
     public ID() {
         this.id = UUID.randomUUID();
     }
+    public ID(String s) {
+        this.id = UUID.fromString(s);
+    }
     public UUID getId() {
         return id;
     }

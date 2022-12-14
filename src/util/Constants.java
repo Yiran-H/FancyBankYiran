@@ -22,6 +22,7 @@ public class Constants {
     public static final String format6 = "|%1$-20s|%2$-10s|%3$-15s|%4$-10s|%5$-20s|%6$-20s|\n";
     public static final String format4 = "|%1$-20s|%2$-15s|%3$-15s|%4$-20s|\n";
 //    public static final Factory factory = new Factory();
+    public static double Fee = 10.0;
     public static final Map<CurrencyType, Double> currency = helper();
     private static Map<CurrencyType, Double> helper() {
         Map<CurrencyType, Double> currency = new HashMap<>();

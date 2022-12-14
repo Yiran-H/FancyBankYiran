@@ -38,6 +38,18 @@ public class Reader {
         }
         return null;
     }
+    // get manager's balance
+    public static double getManagerBalance() {
+        double balance = 0.0;
+        try {
+            reader = new BufferedReader(new java.io.FileReader("src/data/ManagerBalance.txt"));
+            String line = reader.readLine();
+            balance = Double.parseDouble(line);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return balance;
+    }
     public static List<String> getLine(String path) {
         List<String> list = new ArrayList<>();
         try {

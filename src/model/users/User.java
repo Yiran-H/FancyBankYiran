@@ -15,6 +15,15 @@ public class User {
     private Account loan;
     private Account securities;
 
+    public User(String id, String username, String firstName, String lastName, String password, String birth) {
+        this.id = new ID(id);
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.birth = birth;
+    }
+
     public User(String username, String firstName, String lastName, String password, String birth) {
         id = new ID();
         this.username = username;
@@ -85,5 +94,8 @@ public class User {
     }
     public String toString() {
         return id + " " + username + " " + firstName + " " + lastName + " " + password + " " + birth;
+    }
+    public void updateBalance(double offset) {
+
     }
 }
