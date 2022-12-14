@@ -1,0 +1,2 @@
+ID/Username/FirstName/LastName/Password/Birth/Saving/Checking/Loan/Securities/CardNumber
+01f02c0c-bbdd-4dc3-9827-90c840a4796f Lily Yiran Huang 123 19991130 123456

@@ -1,0 +1,2 @@
+ID/UserId/FromAccountID/ToAccountID/Date/Currency/Amount
+1 1 11 21 2022/12/12 CNY 1000

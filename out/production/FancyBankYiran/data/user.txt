@@ -1,0 +1,1 @@
+ID/Username/FirstName/LastName/Password/Birth/Saving/Checking/Loan/Securities/CardNumber
