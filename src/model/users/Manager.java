@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import data.UserDao;
 import util.Reader;
 import util.Writer;
 
@@ -14,10 +15,18 @@ public class Manager extends User{
     public Manager(String username, String firstName, String lastName, String password, String birth) {
         super(username, firstName, lastName, password, birth);
     }
-
+    public Map<String, String> getWhoOweMeMost () {
+        UserDao userDao = new UserDao();
+        Map<String, String> map = helper();
+        Map<String, String> result = new HashMap<>();
+        for (Map.Entry<String, String> m : map.entrySet()) {
+            result.put(userDao.getCustomerByID(m.getKey()), m.getValue());
+        }
+        return result;
+    }
     // get the most own me customer id and unpaid loan value
     // return [userid, unpaid]
-    public Map<String, String> getWhoOweMeMost() {
+    public Map<String, String> helper() {
         Map<String, String> map = new HashMap<>();
         List<String> loanAccountText = Reader.getLine("src/data/LoanAccount.txt");
         for (String s : loanAccountText) {
