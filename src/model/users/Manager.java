@@ -1,6 +1,11 @@
 package model.users;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import util.Reader;
 import util.Writer;
 
@@ -10,7 +15,21 @@ public class Manager extends User{
         super(username, firstName, lastName, password, birth);
     }
 
-
+    // get the most own me customer id and unpaid loan value
+    // return [userid, unpaid]
+    public Map<String, String> getWhoOweMeMost() {
+        Map<String, String> map = new HashMap<>();
+        List<String> loanAccountText = Reader.getLine("src/data/LoanAccount.txt");
+        for (String s : loanAccountText) {
+            String[] ss = s.split(" ", 0);
+            if (ss[11].equals("0.0")) {
+                map.remove(ss[1]);
+            } else {
+                map.put(ss[1], ss[11]);
+            }
+        }
+        return map;
+    }
 
     // return manager's balance in double
     public double getBalanceDouble() {

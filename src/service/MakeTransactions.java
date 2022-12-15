@@ -5,6 +5,7 @@ import data.TransactionDao;
 import model.accounts.Account;
 import model.transactions.*;
 import model.users.User;
+import util.Constants;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class MakeTransactions {
             Transaction withdraw = new Withdraw(user.getId(), null, a.getId(), a.getCurrency(), amount, TransactionType.WITHDRAW);
             transactionDao.save(withdraw);
             a.getBalance().removeMoney(amount);
+            manager.updateBalance(Constants.Fee);
             accountDao.save(a);
         }
     }

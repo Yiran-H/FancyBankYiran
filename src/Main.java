@@ -9,6 +9,8 @@ import util.Writer;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Main {
@@ -24,7 +26,7 @@ public class Main {
 //        System.out.println(u.getChecking().getBalance().toString());
 
         MakeTransactions makeTransactions = new MakeTransactions(u, m);
-        makeTransactions.transfer(u.getSaving(), u.getChecking(), 1000);
+//        makeTransactions.transfer(u.getSaving(), u.getChecking(), 1000);
 //        makeTransactions.deposit(u.getSaving(), 5000.0);
 //        makeTransactions.withdraw(u.getSaving(), 1000.0);
 //        makeTransactions.payLoan(u.getLoan(), 2000);
@@ -36,5 +38,9 @@ public class Main {
 //        for (String s : Reader.L2) {
 //            System.out.println(s);
 //        }
+        Map<String, String> map = m.getWhoOweMeMost();
+        for (Map.Entry<String, String> e : map.entrySet()) {
+            System.out.println(e.getKey() + e.getValue());
+        }
     }
 }
