@@ -1,7 +1,12 @@
 package model.users;
 
 import model.accounts.*;
+import model.currency.Money;
+import model.currency.USD;
 import util.ID;
+import util.Reader;
+
+import java.util.Date;
 
 public class User {
     private final ID id;
@@ -38,7 +43,17 @@ public class User {
     }
 
     public Account getSaving() {
-        return saving;
+        Account a = null;
+        if (hasSaving()) {
+            for (String s : Reader.L5) {
+                String[] ss = s.split(" ", 0);
+                if (ss[1].equals(id.toString())) {
+                    a = new SavingsAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])));
+                    setSaving(a);
+                }
+            }
+        }
+        return a;
     }
 
     public Account getChecking() {
@@ -51,6 +66,42 @@ public class User {
 
     public Account getSecurities() {
         return securities;
+    }
+    public boolean hasSecurities() {
+        //read fron databases to check whether there is a existing account
+        for (String s : Reader.L3) {
+            if (s.split(" ", 0)[1].equals(id.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasChecking() {
+        //read fron databases to check whether there is a existing account
+        for (String s : Reader.L4) {
+            if (s.split(" ", 0)[1].equals(id.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasSaving() {
+        //read fron databases to check whether there is a existing account
+        for (String s : Reader.L5) {
+            if (s.split(" ", 0)[1].equals(id.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasLoan() {
+        //read fron databases to check whether there is a existing account
+        for (String s : Reader.L6) {
+            if (s.split(" ", 0)[1].equals(id.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getUsername() {

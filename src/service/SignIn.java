@@ -12,7 +12,7 @@ public class SignIn {
         this.password = password;
     }
     public User signIn() {
-        if (userDao.getCustomerByName(username).getPassword().equals(password)) {
+        if (userDao.getCustomerByName(username) != null && userDao.getCustomerByName(username).getPassword().equals(password)) {
             return userDao.getCustomerByName(username);
         }
         return null;

@@ -27,6 +27,7 @@ public class AccountDao {
     public void addStockList(String s, String pathName) throws IOException {
             Writer.addLine(s, "src/data/" + pathName + ".txt");
     }
+
     public void createStockListFile(String pathName) {
         File file = new File("src/data/" + pathName + ".txt");
         boolean result;

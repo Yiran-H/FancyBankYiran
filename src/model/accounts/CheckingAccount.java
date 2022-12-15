@@ -13,4 +13,7 @@ public class CheckingAccount extends Account {
         super(userID, currency, balance, AccountType.CHECKING);
         interestBehavior=new CheckingAccountInterestBehavior(this);
     }
+    public CheckingAccount(String id, ID userID, Currency currency, Money balance) {
+        super(id, userID, currency, balance, AccountType.CHECKING);
+    }
 }

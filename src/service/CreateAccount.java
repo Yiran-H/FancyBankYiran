@@ -1,10 +1,7 @@
 package service;
 
 import data.AccountDao;
-import model.accounts.Account;
-import model.accounts.CheckingAccount;
-import model.accounts.SavingsAccount;
-import model.accounts.SecuritiesAccount;
+import model.accounts.*;
 import model.currency.Money;
 import model.currency.USD;
 import model.users.User;
@@ -22,7 +19,7 @@ public class CreateAccount {
     }
 
     public boolean createSavingA(double startMoney) throws IOException {
-        if (startMoney > 100.0) {
+        if (startMoney > 100.0 && !user.hasSaving()) {
             Account a = new SavingsAccount(user.getId(), USD.getInstance(), new Money(startMoney));
             user.setSaving(a);
             accountDao.save(a);
@@ -31,14 +28,35 @@ public class CreateAccount {
         }
         return false;
     }
-    public void createCheckingA(double startMoney) throws IOException {
-        Account a = new CheckingAccount(user.getId(), USD.getInstance(), new Money(startMoney));
-        user.setChecking(a);
-        accountDao.save(a);
-        manager.updateBalance(Constants.Fee);
+
+    /**
+     * request loan
+     * @param requestLoan
+     * @return
+     * @throws IOException
+     */
+    public boolean createLoanA(double requestLoan) throws IOException {
+        if (user.hasSaving() && user.getSaving().getBalance().getValue() >= 1000 && !user.hasLoan()) {
+            Account a = new LoanAccount(user.getId(), USD.getInstance(), new Money(requestLoan));
+            user.setLoan(a);
+            accountDao.save(a);
+            manager.updateBalance(Constants.Fee);
+            return true;
+        }
+        return false;
+    }
+    public boolean createCheckingA(double startMoney) throws IOException {
+        if (!user.hasChecking()) {
+            Account a = new CheckingAccount(user.getId(), USD.getInstance(), new Money(startMoney));
+            user.setChecking(a);
+            accountDao.save(a);
+            manager.updateBalance(Constants.Fee);
+            return true;
+        }
+        return false;
     }
     public boolean createSecuritiesA(double startMoney) {
-        if (user.getSecurities() == null && startMoney >= 1000 && user.getSaving().getBalance().getValue() >= 5000 && user.getSaving().getBalance().getValue() - startMoney >= 2500) {
+        if (!user.hasSecurities() && startMoney >= 1000 && user.hasSaving() && user.getSaving().getBalance().getValue() >= 5000 && user.getSaving().getBalance().getValue() - startMoney >= 2500) {
             user.setSecurities(new SecuritiesAccount(user.getId(), USD.getInstance(), new Money(startMoney)));
             accountDao.createStockListFile(user.getId().toString());
             manager.updateBalance(Constants.Fee);

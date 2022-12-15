@@ -26,6 +26,19 @@ public class Account {
         this.type = type;
     }
 
+    public Account(String id, ID userID, Currency currency, Money balance, AccountType type) {
+        this.id = new ID(id);
+        this.userID = userID;
+        this.currency = currency;
+        this.balance = balance;
+        this.type = type;
+        this.date = new Date();
+    }
+
+    public void setBalance(Money balance) {
+        this.balance = balance;
+    }
+
     public AccountType getType() {
         return type;
     }

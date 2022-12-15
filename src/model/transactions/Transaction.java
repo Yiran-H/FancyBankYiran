@@ -17,12 +17,12 @@ public class Transaction {
     private double Amount;
     private TransactionType type;
     private TransactionDao transactionDao = new TransactionDao();
-    public Transaction(ID userID, ID fromAccountID, ID toAccountID, Date date, Currency currency, double amount, TransactionType type) {
+    public Transaction(ID userID, ID fromAccountID, ID toAccountID, Currency currency, double amount, TransactionType type) {
         this.id = new ID();
         this.userID = userID;
         FromAccountID = fromAccountID;
         ToAccountID = toAccountID;
-        this.date = date;
+        this.date = new Date();
         this.currency = currency;
         Amount = amount;
         this.type = type;
@@ -31,7 +31,9 @@ public class Transaction {
     public void excute(Transaction t) throws IOException {
         transactionDao.save(t);
     }
-
+    public String toString() {
+        return id + " " + userID + " " + FromAccountID + " " + ToAccountID + " " + date + " " + currency.toString() + " " + Amount + " " + type.toString();
+    }
     public ID getId() {
         return id;
     }

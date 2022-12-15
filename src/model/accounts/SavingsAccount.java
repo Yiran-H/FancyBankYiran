@@ -12,4 +12,7 @@ public class SavingsAccount extends Account {
         super(userID, currency, balance, AccountType.SAVINGS);
         interestBehavior=new SavingsAccountInterestBehavior(this);
     }
+    public SavingsAccount(String id, ID userID, Currency currency, Money balance) {
+        super(id, userID, currency, balance, AccountType.SAVINGS);
+    }
 }

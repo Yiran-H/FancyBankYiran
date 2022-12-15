@@ -14,6 +14,9 @@ public class LoanAccount extends Account{
         this.paidLoan = new Money(0);
         this.unpaidLoan = new Money(balance.getValue());
     }
+    public LoanAccount(String id, ID userID, Currency currency, Money balance) {
+        super(id, userID, currency, balance, AccountType.LOAN);
+    }
 
     public Money getPaidLoan() {
         return paidLoan;

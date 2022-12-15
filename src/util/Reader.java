@@ -13,10 +13,10 @@ public class Reader {
     private static Random rand = new Random();
     public static List<String> L1 = getLine("src/data/user.txt");
     private static List<String> L2 = getLine("src/data/Stock.txt");
-    private static List<String> L3 = getLine("src/data/user.txt");
-    private static List<String> L4 = getLine("src/data/user.txt");
-    private static List<String> L5 = getLine("src/data/user.txt");
-    private static List<String> L6 = getLine("src/data/user.txt");
+    public static List<String> L3 = getLine("src/data/SecuritiesAccount.txt");
+    public static List<String> L4 = getLine("src/data/CheckingAccount.txt");
+    public static List<String> L5 = getLine("src/data/SavingAccount.txt");
+    public static List<String> L6 = getLine("src/data/LoanAccount.txt");
 
     private static String[] hasTarget(List<String> list, String t) {
         for (String s : list) {

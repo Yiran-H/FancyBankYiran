@@ -1,1 +1,2 @@
 ID/UserId/Currency/Balance/Date
+ce0f51fd-cf88-44dd-b0dd-02b3c9ace98d 01f02c0c-bbdd-4dc3-9827-90c840a4796f USD 100.0 Wed Dec 14 15:21:39 EST 2022

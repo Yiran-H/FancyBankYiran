@@ -28,6 +28,9 @@ public class SecuritiesAccount extends Account {
         interestBehavior=new SecuritiesAccountInterestBehavior(this);
         stockList = new ArrayList<>();
     }
+    public SecuritiesAccount(String id, ID userID, Currency currency, Money balance) {
+        super(id, userID, currency, balance, AccountType.SECURITIES);
+    }
     public boolean buyStock(ID userID, String name, int number) throws IOException {
         TransactionDao transactionDao = new TransactionDao();
         AccountDao accountDao = new AccountDao();
@@ -39,7 +42,7 @@ public class SecuritiesAccount extends Account {
             //add to user's stockList file
             accountDao.addStockList(list.toString(), userID.toString());
             //add a transaction
-            transactionDao.save(new Transaction(userID, null, getId(), new Date(), s.getCurrency(), s.getPrice() * number, TransactionType.BUYSTOCK));
+            transactionDao.save(new Transaction(userID, null, getId(), s.getCurrency(), s.getPrice() * number, TransactionType.BUYSTOCK));
             return true;
         }
         return false;
