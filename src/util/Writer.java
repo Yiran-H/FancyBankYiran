@@ -15,6 +15,7 @@ public class Writer {
         writer = new BufferedWriter(new FileWriter(path, true));
         writer.append("\n").append(s);
         writer.close();
+        Reader.update();
     }
 
     public static void updateManagerBalance(double balance) throws IOException {

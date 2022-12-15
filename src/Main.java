@@ -19,11 +19,16 @@ public class Main {
         SignIn signIn = new SignIn("Lily", "123");
         User u = signIn.signIn();
         Manager m = new Manager("CPK", "C", "K", "123456", "19801111");
-//        CreateAccount createAccount = new CreateAccount(u, m);
+        CreateAccount createAccount = new CreateAccount(u, m);
+        createAccount.createCheckingA(200);
 //        System.out.println(createAccount.createSavingA(200));
-        System.out.println(u.getSaving().getBalance().toString());
+        System.out.println(u.getChecking().getBalance().toString());
 
 //        MakeTransactions makeTransactions = new MakeTransactions(u, m);
 //        makeTransactions.deposit(u.getSaving(), 300.0);
+//        m.addNewStock("ABC", 10.0, "ABC");
+//        for (String s : Reader.L2) {
+//            System.out.println(s);
+//        }
     }
 }

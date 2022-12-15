@@ -20,7 +20,7 @@ public class CreateAccount {
 
     public boolean createSavingA(double startMoney) throws IOException {
         if (startMoney > 100.0 && !user.hasSaving()) {
-            Account a = new SavingsAccount(user.getId(), USD.getInstance(), new Money(startMoney));
+            Account a = new SavingsAccount(user.getId(), USD.getInstance(), new Money(startMoney - Constants.Fee));
             user.setSaving(a);
             accountDao.save(a);
             manager.updateBalance(Constants.Fee);
@@ -47,7 +47,7 @@ public class CreateAccount {
     }
     public boolean createCheckingA(double startMoney) throws IOException {
         if (!user.hasChecking()) {
-            Account a = new CheckingAccount(user.getId(), USD.getInstance(), new Money(startMoney));
+            Account a = new CheckingAccount(user.getId(), USD.getInstance(), new Money(startMoney - Constants.Fee));
             user.setChecking(a);
             accountDao.save(a);
             manager.updateBalance(Constants.Fee);
@@ -57,7 +57,7 @@ public class CreateAccount {
     }
     public boolean createSecuritiesA(double startMoney) {
         if (!user.hasSecurities() && startMoney >= 1000 && user.hasSaving() && user.getSaving().getBalance().getValue() >= 5000 && user.getSaving().getBalance().getValue() - startMoney >= 2500) {
-            user.setSecurities(new SecuritiesAccount(user.getId(), USD.getInstance(), new Money(startMoney)));
+            user.setSecurities(new SecuritiesAccount(user.getId(), USD.getInstance(), new Money(startMoney - Constants.Fee)));
             accountDao.createStockListFile(user.getId().toString());
             manager.updateBalance(Constants.Fee);
             return true;

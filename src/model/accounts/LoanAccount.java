@@ -2,6 +2,7 @@ package model.accounts;
 
 import model.accounts.accountBehavior.LoanAccountInterestBehavior;
 import model.currency.Money;
+import util.Constants;
 import util.ID;
 import model.currency.Currency;
 
@@ -12,10 +13,13 @@ public class LoanAccount extends Account{
         super(userID, currency, balance, AccountType.LOAN);
         interestBehavior=new LoanAccountInterestBehavior(this);
         this.paidLoan = new Money(0);
-        this.unpaidLoan = new Money(balance.getValue());
+        this.unpaidLoan = new Money(balance.getValue() + Constants.Fee);
     }
-    public LoanAccount(String id, ID userID, Currency currency, Money balance) {
+    //new object from databases
+    public LoanAccount(String id, ID userID, Currency currency, Money balance, Money paidLoan, Money unpaidLoan) {
         super(id, userID, currency, balance, AccountType.LOAN);
+        this.paidLoan = paidLoan;
+        this.unpaidLoan = unpaidLoan;
     }
 
     public Money getPaidLoan() {

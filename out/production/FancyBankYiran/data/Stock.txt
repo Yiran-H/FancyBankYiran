@@ -14,3 +14,5 @@ BA 187.30 Boeing
 BABA 91.25 Alibaba
 ORCL 80.08 Oracle
 PYPL 73.44 Paypal
+ABC 10.0 ABC
+ABC 10.0 ABC

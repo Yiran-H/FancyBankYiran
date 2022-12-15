@@ -57,15 +57,45 @@ public class User {
     }
 
     public Account getChecking() {
-        return checking;
+        Account a = null;
+        if (hasChecking()) {
+            for (String s : Reader.L4) {
+                String[] ss = s.split(" ", 0);
+                if (ss[1].equals(id.toString())) {
+                    a = new CheckingAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])));
+                    setChecking(a);
+                }
+            }
+        }
+        return a;
     }
 
     public Account getLoan() {
-        return loan;
+        Account a = null;
+        if (hasLoan()) {
+            for (String s : Reader.L6) {
+                String[] ss = s.split(" ", 0);
+                if (ss[1].equals(id.toString())) {
+                    a = new LoanAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])), new Money(Double.parseDouble(ss[5])), new Money(Double.parseDouble(ss[6])));
+                    setLoan(a);
+                }
+            }
+        }
+        return a;
     }
 
     public Account getSecurities() {
-        return securities;
+        Account a = null;
+        if (hasSecurities()) {
+            for (String s : Reader.L3) {
+                String[] ss = s.split(" ", 0);
+                if (ss[1].equals(id.toString())) {
+                    a = new SecuritiesAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])));
+                    setSecurities(a);
+                }
+            }
+        }
+        return a;
     }
     public boolean hasSecurities() {
         //read fron databases to check whether there is a existing account

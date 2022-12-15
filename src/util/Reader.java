@@ -12,7 +12,7 @@ public class Reader {
     private static Scanner sc = new Scanner(System.in);
     private static Random rand = new Random();
     public static List<String> L1 = getLine("src/data/user.txt");
-    private static List<String> L2 = getLine("src/data/Stock.txt");
+    public static List<String> L2 = getLine("src/data/Stock.txt");
     public static List<String> L3 = getLine("src/data/SecuritiesAccount.txt");
     public static List<String> L4 = getLine("src/data/CheckingAccount.txt");
     public static List<String> L5 = getLine("src/data/SavingAccount.txt");
@@ -69,6 +69,14 @@ public class Reader {
         for (String l : line) {
             System.out.println(l);
         }
+    }
+    public static void update(){
+        L1 = getLine("src/data/user.txt");
+        L2 = getLine("src/data/Stock.txt");
+        L3 = getLine("src/data/SecuritiesAccount.txt");
+        L4 = getLine("src/data/CheckingAccount.txt");
+        L5 = getLine("src/data/SavingAccount.txt");
+        L6 = getLine("src/data/LoanAccount.txt");
     }
     public static void printLineFormat5(List<String> line) {
         for (String l : line) {
