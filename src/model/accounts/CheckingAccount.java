@@ -22,7 +22,7 @@ public class CheckingAccount extends Account {
         Money a = null;
         for (String s : Reader.L4) {
             String[] ss = s.split(" ", 0);
-            if (ss[1].equals(getId().toString())) {
+            if (ss[0].equals(getId().toString())) {
                 a = new Money(Double.parseDouble(ss[3]));
                 setBalance(a);
             }

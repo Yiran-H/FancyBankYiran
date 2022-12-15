@@ -41,4 +41,15 @@ public class MakeTransactions {
             accountDao.save(a);
         }
     }
+    public void transfer(Account fromA, Account toB, double amount) throws IOException {
+        double d = fromA.getBalance().getValue();
+        if (d > amount) {
+            Transaction transfer = new Transfer(user.getId(), fromA.getId(), toB.getId(), fromA.getCurrency(), amount, TransactionType.TRANSFER);
+            transactionDao.save(transfer);
+            fromA.getBalance().removeMoney(amount);
+            toB.getBalance().addMoney(amount);
+            accountDao.save(fromA);
+            accountDao.save(toB);
+        }
+    }
 }

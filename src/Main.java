@@ -24,9 +24,10 @@ public class Main {
 //        System.out.println(u.getChecking().getBalance().toString());
 
         MakeTransactions makeTransactions = new MakeTransactions(u, m);
+        makeTransactions.transfer(u.getSaving(), u.getChecking(), 1000);
 //        makeTransactions.deposit(u.getSaving(), 5000.0);
 //        makeTransactions.withdraw(u.getSaving(), 1000.0);
-        makeTransactions.payLoan(u.getLoan(), 2000);
+//        makeTransactions.payLoan(u.getLoan(), 2000);
 //        createAccount.createLoanA(1000.0);
 //        createAccount.createSecuritiesA(1500);
 //        u.getSecurities().buyStock(u.getId(), "PYPL", 2);
