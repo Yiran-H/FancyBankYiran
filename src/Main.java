@@ -20,13 +20,18 @@ public class Main {
         User u = signIn.signIn();
         Manager m = new Manager("CPK", "C", "K", "123456", "19801111");
         CreateAccount createAccount = new CreateAccount(u, m);
-        createAccount.createCheckingA(200);
-//        System.out.println(createAccount.createSavingA(200));
-        System.out.println(u.getChecking().getBalance().toString());
+//        createAccount.createCheckingA(200);
+//        System.out.println(u.getChecking().getBalance().toString());
 
-//        MakeTransactions makeTransactions = new MakeTransactions(u, m);
-//        makeTransactions.deposit(u.getSaving(), 300.0);
+        MakeTransactions makeTransactions = new MakeTransactions(u, m);
+//        makeTransactions.deposit(u.getSaving(), 5000.0);
+//        makeTransactions.withdraw(u.getSaving(), 1000.0);
+        makeTransactions.payLoan(u.getLoan(), 2000);
+//        createAccount.createLoanA(1000.0);
+//        createAccount.createSecuritiesA(1500);
+//        u.getSecurities().buyStock(u.getId(), "PYPL", 2);
 //        m.addNewStock("ABC", 10.0, "ABC");
+//        m.updateStockPrice("PYPL", 90);
 //        for (String s : Reader.L2) {
 //            System.out.println(s);
 //        }

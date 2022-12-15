@@ -5,6 +5,7 @@ import model.currency.Money;
 import util.Constants;
 import util.ID;
 import model.currency.Currency;
+import util.Reader;
 
 public class LoanAccount extends Account{
     private Money paidLoan;
@@ -23,7 +24,15 @@ public class LoanAccount extends Account{
     }
 
     public Money getPaidLoan() {
-        return paidLoan;
+        Money a = null;
+        for (String s : Reader.L6) {
+            String[] ss = s.split(" ", 0);
+            if (ss[0].equals(getId().toString())) {
+                a = new Money(Double.parseDouble(ss[10]));
+                setPaidLoan(a);
+            }
+        }
+        return a;
     }
 
     public void setPaidLoan(Money paidLoan) {
@@ -31,7 +40,15 @@ public class LoanAccount extends Account{
     }
 
     public Money getUnpaidLoan() {
-        return unpaidLoan;
+        Money a = null;
+        for (String s : Reader.L6) {
+            String[] ss = s.split(" ", 0);
+            if (ss[0].equals(getId().toString())) {
+                a = new Money(Double.parseDouble(ss[11]));
+                setUnpaidLoan(a);
+            }
+        }
+        return a;
     }
 
     public void setUnpaidLoan(Money unpaidLoan) {
@@ -39,5 +56,17 @@ public class LoanAccount extends Account{
     }
     public String toString() {
         return super.toString() + " " + paidLoan.toString() + " " + unpaidLoan.toString();
+    }
+    @Override
+    public Money getBalance() {
+        Money a = null;
+        for (String s : Reader.L6) {
+            String[] ss = s.split(" ", 0);
+            if (ss[1].equals(getId().toString())) {
+                a = new Money(Double.parseDouble(ss[3]));
+                setBalance(a);
+            }
+        }
+        return a;
     }
 }

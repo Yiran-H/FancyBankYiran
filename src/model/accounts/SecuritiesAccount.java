@@ -14,6 +14,7 @@ import util.Factory;
 import util.ID;
 
 import model.currency.Currency;
+import util.Reader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,12 +31,13 @@ public class SecuritiesAccount extends Account {
     }
     public SecuritiesAccount(String id, ID userID, Currency currency, Money balance) {
         super(id, userID, currency, balance, AccountType.SECURITIES);
+        stockList = new ArrayList<>();
     }
     public boolean buyStock(ID userID, String name, int number) throws IOException {
         TransactionDao transactionDao = new TransactionDao();
         AccountDao accountDao = new AccountDao();
         Stock s = Factory.produceStock(name);
-        if (s != null && getBalance().change2USD(getCurrency().getType()) < s.getPrice() * number) {
+        if (s != null && getBalance().change2USD(getCurrency().getType()) >= s.getPrice() * number) {
             StockList list = new StockList(userID, s, number);
             //add to user's stockList
             stockList.add(list);
@@ -43,8 +45,22 @@ public class SecuritiesAccount extends Account {
             accountDao.addStockList(list.toString(), userID.toString());
             //add a transaction
             transactionDao.save(new Transaction(userID, null, getId(), s.getCurrency(), s.getPrice() * number, TransactionType.BUYSTOCK));
+            this.getBalance().removeMoney(s.getPrice() * number);
+            accountDao.save(this);
             return true;
         }
         return false;
+    }
+    @Override
+    public Money getBalance() {
+        Money a = null;
+        for (String s : Reader.L3) {
+            String[] ss = s.split(" ", 0);
+            if (ss[1].equals(getId().toString())) {
+                a = new Money(Double.parseDouble(ss[3]));
+                setBalance(a);
+            }
+        }
+        return a;
     }
 }

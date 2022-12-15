@@ -25,18 +25,18 @@ public class AccountDao {
         }
     }
     public void addStockList(String s, String pathName) throws IOException {
-            Writer.addLine(s, "src/data/" + pathName + ".txt");
+            Writer.addLine(s, "src/data/StockList/" + pathName + ".txt");
     }
 
     public void createStockListFile(String pathName) {
-        File file = new File("src/data/" + pathName + ".txt");
+        File file = new File("src/data/StockList/" + pathName + ".txt");
         boolean result;
         try {
             result = file.createNewFile();
             if(result) {
                 System.out.println("file created "+file.getCanonicalPath());
                 String s = "id/userID/stockName/number/butDate/sellDate";
-                Writer.addLine(s, "src/data/" + pathName + ".txt");
+                Writer.addLine(s, "src/data/StockList/" + pathName + ".txt");
             }
         } catch (IOException e) {
             e.printStackTrace();

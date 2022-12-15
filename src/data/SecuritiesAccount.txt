@@ -1,1 +1,3 @@
 ID/UserId/Currency/Balance/Date
+9727ed7d-55a0-4cda-a2fe-afe2ad8f7f17 01f02c0c-bbdd-4dc3-9827-90c840a4796f USD 1490.0 Thu Dec 15 12:55:16 EST 2022
+9727ed7d-55a0-4cda-a2fe-afe2ad8f7f17 01f02c0c-bbdd-4dc3-9827-90c840a4796f USD 1310.0 Thu Dec 15 13:07:40 EST 2022

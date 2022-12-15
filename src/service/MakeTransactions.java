@@ -3,9 +3,7 @@ package service;
 import data.AccountDao;
 import data.TransactionDao;
 import model.accounts.Account;
-import model.transactions.Deposit;
-import model.transactions.Transaction;
-import model.transactions.TransactionType;
+import model.transactions.*;
 import model.users.User;
 
 import java.io.IOException;
@@ -24,5 +22,23 @@ public class MakeTransactions {
         transactionDao.save(deposit);
         a.getBalance().addMoney(amount);
         accountDao.save(a);
+    }
+    public void withdraw(Account a, double amount) throws IOException {
+        if (amount <= a.getBalance().getValue()) {
+            Transaction withdraw = new Withdraw(user.getId(), null, a.getId(), a.getCurrency(), amount, TransactionType.WITHDRAW);
+            transactionDao.save(withdraw);
+            a.getBalance().removeMoney(amount);
+            accountDao.save(a);
+        }
+    }
+    public void payLoan(Account a, double amount) throws IOException {
+        double d = a.getUnpaidLoan().getValue();
+        if (d > 0) {
+            Transaction payLoan = new PayLoan(user.getId(), null, a.getId(), a.getCurrency(), Math.min(d, amount), TransactionType.PAYLOAN);
+            transactionDao.save(payLoan);
+            a.getUnpaidLoan().removeMoney(Math.min(d, amount));
+            a.getPaidLoan().addMoney(Math.min(d, amount));
+            accountDao.save(a);
+        }
     }
 }

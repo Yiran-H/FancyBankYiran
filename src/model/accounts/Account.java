@@ -4,6 +4,8 @@ import model.accounts.accountBehavior.IntrestBehavior;
 import model.currency.Currency;
 import model.currency.Money;
 import util.ID;
+
+import java.io.IOException;
 import java.util.Date;
 
 public class Account {
@@ -34,6 +36,9 @@ public class Account {
         this.type = type;
         this.date = new Date();
     }
+    public boolean buyStock(ID userID, String name, int number) throws IOException {
+        return true;
+    }
 
     public void setBalance(Money balance) {
         this.balance = balance;
@@ -57,6 +62,12 @@ public class Account {
 
     public Money getBalance() {
         return balance;
+    }
+    public Money getUnpaidLoan() {
+        return new Money(0);
+    }
+    public Money getPaidLoan() {
+        return new Money(0);
     }
 
     public Date getDate() {

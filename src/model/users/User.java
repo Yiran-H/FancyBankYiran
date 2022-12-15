@@ -76,7 +76,7 @@ public class User {
             for (String s : Reader.L6) {
                 String[] ss = s.split(" ", 0);
                 if (ss[1].equals(id.toString())) {
-                    a = new LoanAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])), new Money(Double.parseDouble(ss[5])), new Money(Double.parseDouble(ss[6])));
+                    a = new LoanAccount(ss[0], id, USD.getInstance(), new Money(Double.parseDouble(ss[3])), new Money(Double.parseDouble(ss[10])), new Money(Double.parseDouble(ss[11])));
                     setLoan(a);
                 }
             }
@@ -84,8 +84,8 @@ public class User {
         return a;
     }
 
-    public Account getSecurities() {
-        Account a = null;
+    public SecuritiesAccount getSecurities() {
+        SecuritiesAccount a = null;
         if (hasSecurities()) {
             for (String s : Reader.L3) {
                 String[] ss = s.split(" ", 0);

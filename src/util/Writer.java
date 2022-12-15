@@ -25,6 +25,7 @@ public class Writer {
         writer.print("");
         writer.print(df.format(balance));
         writer.close();
+        Reader.update();
     }
 
 
@@ -51,6 +52,7 @@ public class Writer {
         //System.out.println(newStocktxt);
         writer.print(newStocktxt);
         writer.close();
+        Reader.update();
     }
 
 //    public static void main(String[] args) throws IOException {

@@ -55,10 +55,12 @@ public class CreateAccount {
         }
         return false;
     }
-    public boolean createSecuritiesA(double startMoney) {
+    public boolean createSecuritiesA(double startMoney) throws IOException {
         if (!user.hasSecurities() && startMoney >= 1000 && user.hasSaving() && user.getSaving().getBalance().getValue() >= 5000 && user.getSaving().getBalance().getValue() - startMoney >= 2500) {
-            user.setSecurities(new SecuritiesAccount(user.getId(), USD.getInstance(), new Money(startMoney - Constants.Fee)));
+            Account a = new SecuritiesAccount(user.getId(), USD.getInstance(), new Money(startMoney - Constants.Fee));
+            user.setSecurities(a);
             accountDao.createStockListFile(user.getId().toString());
+            accountDao.save(a);
             manager.updateBalance(Constants.Fee);
             return true;
         }
