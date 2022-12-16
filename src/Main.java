@@ -32,7 +32,11 @@ public class Main {
 //        makeTransactions.payLoan(u.getLoan(), 2000);
 //        createAccount.createLoanA(1000.0);
 //        createAccount.createSecuritiesA(1500);
-//        u.getSecurities().buyStock(u.getId(), "PYPL", 2);
+//        u.getSecurities().buyStock(u.getId(), "AMZN", 3);
+        for (String s : u.getSecurities().print(Reader.L1)) {
+            System.out.println(s);
+        }
+//        u.getSecurities().sellStock(u.getId().toString(), "PYPL", 1);
 //        m.addNewStock("ABC", 10.0, "ABC");
 //        m.updateStockPrice("PYPL", 90);
 //        for (String s : Reader.L2) {

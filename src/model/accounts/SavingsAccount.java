@@ -9,6 +9,9 @@ import util.ID;
 import model.currency.Currency;
 import util.Reader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SavingsAccount extends Account {
     public SavingsAccount(ID userID, Currency currency, Money balance) {
         super(userID, currency, balance, AccountType.SAVINGS);
@@ -29,5 +32,11 @@ public class SavingsAccount extends Account {
             }
         }
         return a;
+    }
+
+    //date diffMoney afterMoney
+    @Override
+    public List<String> print(List<String> input) {
+        return super.print(Reader.L5);
     }
 }

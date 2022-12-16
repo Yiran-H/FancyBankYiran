@@ -4,9 +4,13 @@ import model.accounts.accountBehavior.IntrestBehavior;
 import model.currency.Currency;
 import model.currency.Money;
 import util.ID;
+import util.Reader;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Account {
     private final ID id;
@@ -37,6 +41,9 @@ public class Account {
         this.date = new Date();
     }
     public boolean buyStock(ID userID, String name, int number) throws IOException {
+        return true;
+    }
+    public boolean sellStock(String path, String stockName, int sellCount) throws IOException {
         return true;
     }
 
@@ -75,6 +82,21 @@ public class Account {
     }
     public String toString() {
         return id + " " + userID + " " + currency.toString() + " " + balance.toString() + " " + date;
+    }
+    //date diffMoney afterMoney
+    public List<String> print(List<String> input) {
+        List<String> list = new ArrayList<>();
+        String before = "";
+        for (String s : input) {
+            String[] ss = s.split(" ", 0);
+            if (ss[0].toString().equals(getId().toString())) {
+                String diff = list.size() == 0 ? ss[3] : String.valueOf(Double.parseDouble(ss[3]) - Double.parseDouble(before));
+                String after = ss[3];
+                list.add(ss[4] + " " + ss[5] + " " + ss[6] + " " + ss[7] + " " + ss[8] + " " + ss[9] + " " + diff + " " + after);
+                before = ss[3];
+            }
+        }
+        return list;
     }
 
     public void interest(){

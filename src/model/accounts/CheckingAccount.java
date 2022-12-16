@@ -7,6 +7,9 @@ import util.ID;
 import model.currency.Currency;
 import util.Reader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CheckingAccount extends Account {
 
 
@@ -28,5 +31,9 @@ public class CheckingAccount extends Account {
             }
         }
         return a;
+    }
+    @Override
+    public List<String> print(List<String> input) {
+        return super.print(Reader.L4);
     }
 }
